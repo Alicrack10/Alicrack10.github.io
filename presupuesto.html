@@ -18,8 +18,8 @@
       var correo = document.getElementById("correo").value;
       var condiciones = document.getElementById("condiciones").checked;
 
-      var nombreRegex = /^[a-zA-Z]+$/;
-      var apellidosRegex = /^[a-zA-Z]+$/;
+      var nombreRegex = /^[a-zA-Z\s]+$/;
+      var apellidosRegex = /^[a-zA-Z\s]+$/;
       var telefonoRegex = /^[+]{0,1}[0-9]{1,12}$/;
       var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -64,8 +64,8 @@
       var presupuesto = producto;
 
       // Validar los datos de contacto y condiciones
-      var nombreRegex = /^[a-zA-Z]+$/;
-      var apellidosRegex = /^[a-zA-Z]+$/;
+      var nombreRegex = /^[a-zA-Z\s]+$/;
+      var apellidosRegex = /^[a-zA-Z\s]+$/;
       var telefonoRegex = /^[+]{0,1}[0-9]{1,12}$/;
       var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -135,11 +135,11 @@
       <div class="caja">
         <h3>Datos de contacto</h3>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" pattern="[A-Za-z]{1,15}" required>
+        <input type="text" id="nombre" name="nombre" pattern="[A-Za-z\s]{1,15}" required>
         <br>
 
         <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos" pattern="[A-Za-z]{1,40}" required>
+        <input type="text" id="apellidos" name="apellidos" pattern="[A-Za-z]+$" required>
         <br>
 
         <label for="telefono">Teléfono de contacto:</label>
