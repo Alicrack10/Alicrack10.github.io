@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Contacto</title>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+  <style>
+    #mapa {
+      height: 300px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TRABAJO MASTER.D</h1>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="./galeria.html">Galería</a></li>
+        <li><a href="./presupuesto.html">Presupuesto</a></li>
+        <li><a href="./contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contacto</h2>
+    <div id="mapa">
+      <!-- Aquí se insertará el mapa dinámico -->
+    </div>
+
+    <div>
+      <h3>Datos de contacto</h3>
+      <span> Puede llamarnos al +64 4856209, puede escibirnos al corre Negocio@info.com o contactar atravez de redes sociales</span>
+    </div>
+  </main>
+
+  <footer>
+    <div class="redes-sociales">
+      <img src="./public/instagram.png" alt="Logo de Instagram" width="100">
+      <img src="./public/twitter.png" alt="Logo de Twitter" width="100">
+    </div>
+    <div>
+      <div>
+        <h4>Dirección de la empresa</h4>
+        <span>Waipori, Nueva Zelanda, C/ Mitchells Flat Road</span>
+      </div>
+      <div>
+        <h4>Aviso legal</h4>
+        <span>La utilización del sitio Web le otorga la condición de Usuario, e implica la aceptación completa de todas las cláusulas y condiciones</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var negocioLatlng = L.latLng(-45.8809074,169.8745391,10); // Coordenadas de la ubicación del negocio
+
+    var map = L.map('mapa').setView(negocioLatlng, 10); // Crear mapa
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var negocioMarker = L.marker(negocioLatlng).addTo(map); // Marcador del negocio
+    negocioMarker.bindPopup('Negocio').openPopup();
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var clienteLatlng = L.latLng(position.coords.latitude, position.coords.longitude); // Obtener la ubicación del cliente
+
+        var clienteMarker = L.marker(clienteLatlng).addTo(map); // Marcador del cliente
+        clienteMarker.bindPopup('Cliente').openPopup();
+
+        var control = L.Routing.control({
+          waypoints: [
+            L.latLng(position.coords.latitude, position.coords.longitude),
+            negocioLatlng
+          ],
+          routeWhileDragging: true
+        }).addTo(map); // Calcular ruta
+      });
+    }
+  </script>
+</body>
+</html>

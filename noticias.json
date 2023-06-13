@@ -1,0 +1,22 @@
+{
+    "noticias": [
+      {
+        "titulo": "200000 personas reciben ayuda estatal pese a no calificar como 'pobres'",
+        "descripcion": "200000 personas han recibido esas ayudas pese al descontento de la población",
+        "fecha": "2023-06-01",
+        "imagen": "./noticias/noticia1.png"
+      },
+      {
+        "titulo": "PAC logró contundente ventaja en 56 cantones",
+        "descripcion": "Las personas están contentas porque es la mejor elección, según dicen",
+        "fecha": "2023-06-02",
+        "imagen": "./noticias/noticia2.png"
+      },
+      {
+        "titulo": "Lluvias del huracán ETA arrasan tramos en 20 carreteras",
+        "descripcion": "El huracán ETA arrasó a su paso tramos en 20 carreteras estatales pero sin ninguna víctima",
+        "fecha": "2023-06-03",
+        "imagen": "./noticias/noticia3.png"
+      }
+    ]
+  }

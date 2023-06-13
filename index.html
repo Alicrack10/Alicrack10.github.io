@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>PORTADA</title>
+  <script>
+    // Variables globales
+    var noticias = [];
+    var indiceNoticiaActual = 0;
+
+    // Cargar noticias desde el archivo externo
+    function cargarNoticias() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          noticias = JSON.parse(xhr.responseText).noticias;
+          mostrarNoticiaActual();
+        }
+      };
+      xhr.open("GET", "noticias.json", true);
+      xhr.send();
+    }
+
+    // Mostrar la noticia actual
+    function mostrarNoticiaActual() {
+      var noticiaActual = noticias[indiceNoticiaActual];
+      var noticiaHTML = `
+        <article>
+          <h3>${noticiaActual.titulo}</h3>
+          <p>${noticiaActual.descripcion}</p>
+          <p>${noticiaActual.fecha}</p>
+          <img src="${noticiaActual.imagen}" alt="Imagen de la noticia">
+        </article>
+      `;
+      var noticiasSection = document.getElementById("noticias-section");
+      noticiasSection.innerHTML = noticiaHTML;
+    }
+
+    // Mostrar la siguiente noticia
+    function mostrarSiguienteNoticia() {
+      if (indiceNoticiaActual < noticias.length - 1) {
+        indiceNoticiaActual++;
+      }
+      mostrarNoticiaActual();
+    }
+
+    // Mostrar la noticia anterior
+    function mostrarNoticiaAnterior() {
+      if (indiceNoticiaActual > 0) {
+        indiceNoticiaActual--;
+      }
+      mostrarNoticiaActual();
+    }
+  </script>
+</head>
+<body onload="cargarNoticias()">
+  <header>
+    <h1>TRABAJO MASTER.D</h1>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="./galeria.html">Galería</a></li>
+        <li><a href="./presupuesto.html">Presupuesto</a></li>
+        <li><a href="./contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>HOLA</h2>
+      <p>Esta página web es la primera que hago</p>
+    </section>
+
+    <section>
+      <h2>FRASE FILOSÓFICA</h2>
+      <p>El tiempo es una ilusión</p>
+    </section>
+
+    <section>
+      <h2>QUÉ SON LAS NOTICIAS SEGÚN LA RAE</h2>
+      <p>Según la RAE, son el contenido de una comunicación antes desconocida que se da a conocer</p>
+    </section>
+
+    <section id="noticias-section">
+      <h2>Noticias</h2>
+      <!-- La noticia actual se cargará dinámicamente aquí -->
+    </section>
+    
+    <button onclick="mostrarNoticiaAnterior()">Anterior</button>
+    <button onclick="mostrarSiguienteNoticia()">Siguiente</button>
+  </main>
+
+  <footer>
+    <div class="redes-sociales">
+      <img src="./public/instagram.png" alt="Logo de Instagram" width="100">
+      <img src="./public/twitter.png" alt="Logo de Twitter" width="100">
+    </div>
+    <p>Dirección de la empresa</p>
+    Waipori, Nueva Zelanda, C/ Mitchells Flat Road
+    <p>Aviso legal</p>
+    La utilización del sitio Web le otorga la condición de Usuario, e implica la aceptación completa de todas las cláusulas y condiciones
+  </footer>
+</body>
+</html>

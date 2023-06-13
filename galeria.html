@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Galería</title>
+  <style>
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .gallery-item {
+      width: 200px;
+      margin: 10px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  <script>
+    // Datos de la galería (imágenes y descripciones)
+    var galleryData = [
+      {
+        src: "./galeria/tucan.png",
+        alt: "Tucán en Costa Rica"
+      },
+      {
+        src: "./galeria/sloth.png",
+        alt: "Oso perezoso en Costa Rica"
+      },
+      {
+        src: "./galeria/rana.png",
+        alt: "Rana en Costa Rica"
+      },
+      {
+        src: "./galeria/playa.png",
+        alt: "Playa en Costa Rica"
+      },
+      {
+        src: "./galeria/catarata.png",
+        alt: "Catarata en Costa Rica"
+      },
+      {
+        src: "./galeria/volcan.png",
+        alt: "Volcán en Costa Rica"
+      }
+    ];
+
+    // Variable para realizar un seguimiento del índice actual
+    var currentIndex = 0;
+
+    // Función para mostrar la galería
+    function mostrarGaleria() {
+      var galleryContainer = document.getElementById("gallery-container");
+
+      // Limpiar el contenedor de la galería
+      galleryContainer.innerHTML = "";
+
+      // Recorrer los datos de la galería y crear elementos HTML para cada imagen
+      for (var i = currentIndex; i < currentIndex + 3; i++) {
+        var item = galleryData[i];
+
+        var galleryItem = document.createElement("div");
+        galleryItem.className = "gallery-item";
+
+        var image = document.createElement("img");
+        image.src = item.src;
+        image.alt = item.alt;
+
+        galleryItem.appendChild(image);
+        galleryContainer.appendChild(galleryItem);
+      }
+    }
+
+    // Función para mostrar las siguientes imágenes
+    function mostrarSiguiente() {
+      var galleryContainer = document.getElementById("gallery-container");
+
+      // Actualizar el índice actual
+      currentIndex += 3;
+
+      // Verificar si se alcanzó el final de la galería
+      if (currentIndex >= galleryData.length) {
+        currentIndex = 0;
+      }
+
+      // Mostrar las siguientes tres imágenes
+      mostrarGaleria();
+    }
+
+    // Función para mostrar las imágenes anteriores
+    function mostrarAnterior() {
+      var galleryContainer = document.getElementById("gallery-container");
+
+      // Actualizar el índice actual
+      currentIndex -= 3;
+
+      // Verificar si se alcanzó el inicio de la galería
+      if (currentIndex < 0) {
+        currentIndex = galleryData.length - 3;
+      }
+
+      // Mostrar las tres imágenes anteriores
+      mostrarGaleria();
+    }
+  </script>
+</head>
+<body onload="mostrarGaleria()">
+  <header>
+    <h1>TRABAJO MASTER.D</h1>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Inicio</a></li>
+        <li><a href="./galeria.html">Galería</a></li>
+        <li><a href="./presupuesto.html">Presupuesto</a></li>
+        <li><a href="./contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Galería</h2>
+    <div id="gallery-container" class="gallery-container">
+      <!-- Las imágenes se cargarán dinámicamente aquí -->
+    </div>
+    <button onclick="mostrarAnterior()">Anterior</button>
+    <button onclick="mostrarSiguiente()">Siguiente</button>
+  </main>
+
+  <footer>
+    <div class="redes-sociales">
+      <img src="./public/instagram.png" alt="Logo de Instagram" width="100">
+      <img src="./public/twitter.png" alt="Logo de Twitter" width="100">
+    </div>
+    <p>Dirección de la empresa</p>
+    Waipori, Nueva Zelanda, C/ Mitchells Flat Road
+    <p>Aviso legal</p>
+    La utilización del sitio Web le otorga la condición de Usuario, e implica la aceptación completa de todas las cláusulas y condiciones
+  </footer>
+</body>
+</html>
